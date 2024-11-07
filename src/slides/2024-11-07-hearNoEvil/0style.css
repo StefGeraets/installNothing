@@ -1,0 +1,46 @@
+.surprise-img {
+	position: absolute;
+	width: 0;
+	height: 0;
+	line-height: 1;
+	font-size: clamp(4dvh, 10rem, 12.5dvh);
+
+	scale: 0;
+	opacity: 0;
+	animation: 2500ms linear surprise-animate;
+	pointer-events: none;
+
+	&::before {
+		position: absolute;
+		display: block;
+		content: attr(aria-label);
+		transform: translate(
+			calc((-1 * clamp(4dvh, 10rem, 12.5dvh) / 2) - 2.25rem),
+			calc(-1 * clamp(4dvh, 10rem, 12.5dvh) / 2)
+		);
+	}
+}
+
+@keyframes surprise-animate {
+	0% {
+		scale: 0;
+		opacity: 0;
+	}
+	3% {
+		scale: 1.2;
+		opacity: 1;
+	}
+	80% {
+		opacity: 1;
+	}
+	90% {
+		scale: 1;
+	}
+	94% {
+		opacity: 0;
+	}
+	100% {
+		scale: 10;
+		opacity: 0;
+	}
+}

@@ -1,12 +1,12 @@
 import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-import { mdsvex, escapeSvelte } from 'mdsvex'
-import { createHighlighter } from 'shiki'
+import { mdsvex, escapeSvelte } from 'mdsvex';
+import { createHighlighter } from 'shiki';
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
-	extensions: ['.md'],
+	extensions: ['.md', '.txt'],
 	layout: {
 		_: './src/routes/mdsvex.svelte'
 	},
@@ -15,23 +15,20 @@ const mdsvexOptions = {
 			const highlighter = await createHighlighter({
 				themes: ['github-dark'],
 				langs: ['javascript', 'typescript']
-			})
-			await highlighter.loadLanguage('javascript', 'typescript', 'html')
-			const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'github-dark' }))
-			return `{@html \`${html}\` }`
+			});
+			await highlighter.loadLanguage('javascript', 'typescript', 'html');
+			const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'github-dark' }));
+			return `{@html \`${html}\` }`;
 		}
-	},
-}
+	}
+};
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	extensions: ['.svelte', '.md'],
+	extensions: ['.svelte', '.md', '.txt'],
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	preprocess: [
-		vitePreprocess(), 
-		mdsvex(mdsvexOptions)
-	],
+	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.

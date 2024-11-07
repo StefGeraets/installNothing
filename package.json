@@ -1,7 +1,22 @@
 {
-	"name": "installnothing",
+	"name": "@peterdekok/lunchables",
 	"version": "0.0.1",
 	"private": true,
+	"engines": {
+		"node": "^20 || >=22"
+	},
+	"author": {
+		"name": "Stef Geraets",
+		"email": "stef.geraets@eventix.nl",
+		"url": "https://github.com/StefGeraets"
+	},
+	"contributors": [
+		{
+			"name": "Peter de Kok",
+			"email": "info@peterdekok.nl",
+			"url": "https://github.com/PeterDeKok"
+		}
+	],
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -17,6 +32,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@tailwindcss/typography": "^0.5.15",
 		"@types/eslint": "^9.6.0",
+		"@types/node": "^22.9.0",
 		"autoprefixer": "^10.4.20",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",

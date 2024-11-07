@@ -1,38 +1,58 @@
-# create-svelte
+# Lunchables
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Presenation framework for lunchables. Offers builtin markdown based slides with support
+for HTML and custom components.
+Powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
-## Creating a project
+## Creating a presentation
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Add a directory to `/src/slides`.
+- Add a `0meta.txt` file to that directory.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+```txt
+---
+title: 'Lunchable: Presentation title'
+description: 'Presentation description'
+---
 
-# create a new project in my-app
-npm create svelte@latest my-app
 ```
 
-## Developing
+- Optional: Add a `0style.css` file to that directory.
+- Start adding slides.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Slides
 
-```bash
-npm run dev
+Every slide is a markdown file.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+[`yaml frontmatter`](https://jekyllrb.com/docs/front-matter/) is used to add some metadata and boilerplate to the layout.
 
-## Building
+The common values are:
 
-To create a production version of your app:
+#### `title`: `string`
 
-```bash
-npm run build
-```
+The title of the window and the main header if no subtitle is given.
 
-You can preview the production build with `npm run preview`.
+#### `subtitle`: `string` _[optional]_
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+Used for continuation slides. i.e. This is semantically less important, but will be shown as the main header.
+
+#### `type`: `'content'` | `'demo'` | `'ship'` | `'code'`
+
+The boilerplate layout to use.
+
+#### `order`: `number`
+
+The order in which the slides are sorted. It is considered good practice to also add this to the start of the filename.
+
+### Components
+
+Custom (svelte) components can be created in the `$lib/components/` directory.
+These components should be re-usable across multiple presentations.
+
+If components are intended for single-use. i.e. as part of (a demo of) a single presentation, the should be added to the `$lib/demo/{presentation-key}/` directory instead.
+
+## Presenting
+
+Presenting is easy, navigate to the domain in the browser and press the right arrow key.
+
+This domain is either from your deployment, or can be seen in the terminal when running `yarn dev`.
